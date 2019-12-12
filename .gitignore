@@ -1,0 +1,5 @@
+#dataset folder
+maildir/
+
+#DS Store
+.DS_Store
