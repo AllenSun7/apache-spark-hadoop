@@ -1,2 +1,2 @@
 # apache-spark-hadoop
-apache-spark-hadoop word count on anagrams and palindrome
+use apache-spark-hadoop to do word count on anagrams and palindrome from a dataset
