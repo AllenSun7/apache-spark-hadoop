@@ -2,7 +2,7 @@ from pyspark import SparkContext, SparkConf
 import pysnooper
 import enchant
 import os
-
+from collections import defaultdict
 def word_count():
     # count words of palindrome and anagram respectively
     conf = SparkConf().setAppName("Apache spark").setMaster("local[6]")
@@ -15,7 +15,7 @@ def word_count():
     wordCounts = words.countByValue()
     d = enchant.Dict("en_US") #english word
     contents_anagram = list_anagram()
-    dic_anagram = {"anagram": "count"}
+    dic_anagram = []
     dic_palindrome = {"palindrome": "count"}
     for word, count in wordCounts.items():
         if len(word) > 2: #a work must contain more than 2 letters
@@ -24,14 +24,16 @@ def word_count():
                 ascii_word = ord(word[0])
                 if 65 <= ascii_word <= 90 or 97 <= ascii_word <= 122:
                     word_dic = {word: count}
+                    #check if it is a palindrome
                     if get_palindrome(word, count):
                         dic_palindrome.update(word_dic)
+                    #check if it is a anagram
                     if get_anagram(word, count, contents_anagram):  
-                        dic_anagram.update(word_dic)
+                        dic_anagram.append(word_dic)
+                        
     print(dic_palindrome)
-    print(dic_anagram)
-
-
+    group_dic_anagram = group_anagram(dic_anagram)
+    print(group_dic_anagram)
 
 def get_palindrome(word, count):
     #palindrome
@@ -53,6 +55,17 @@ def list_anagram():
     with open(my_file, "r") as ins:
         array = [line.strip() for line in ins]
     return array
+
+def group_anagram(test_list):
+    # using defaultdict() + sorted() + values() 
+    # Grouping Anagrams 
+    temp = defaultdict(list) 
+    for ele in test_list: 
+        for key in ele:
+            temp[str(sorted(key))].append(ele) 
+    res = list(temp.values())   
+    return str(res)
+
 
 def main():
     word_count()
