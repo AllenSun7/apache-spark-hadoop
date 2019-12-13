@@ -5,11 +5,11 @@ import enchant
 def word_count():
 
     
-    conf = SparkConf().setAppName("Apache Apark").setMaster("local[3]")
+    conf = SparkConf().setAppName("Apache Apark").setMaster("local[6]")
     sc = SparkContext(conf = conf)
 
     #lines = sc.textFile("../maildir/*") #all dataset
-    lines = sc.textFile("../test-data/*")
+    lines = sc.textFile("../allen-p/*")
     
     words = lines.flatMap(lambda line: line.split(" "))
     
@@ -28,6 +28,7 @@ def get_palindrome(word, count):
     #palindrome
     if word == word[::-1]:  
         print("{} : {}".format(word, count))
+    # not same letters "AAA\BBB"
 
 def main():
     word_count()
