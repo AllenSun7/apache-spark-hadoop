@@ -9,11 +9,13 @@ if __name__ == "__main__":
   sc = SparkContext(conf=conf)
  
   # read input text files present in the directory to RDD
-  lines = sc.textFile("../test-data*")
+  lines = sc.textFile("in/maildir/*")
  
   # collect the RDD to a list
   llist = lines.collect()
- 
+
   # print the list
+  i = 1
   for line in llist:
-    print(line)
+    print(i)
+    i += 1

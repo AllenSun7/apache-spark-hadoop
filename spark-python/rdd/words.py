@@ -3,14 +3,26 @@ import pysnooper
 import enchant
 import os
 from collections import defaultdict
+
 def word_count():
     # count words of palindrome and anagram respectively
     conf = SparkConf().setAppName("Apache spark").setMaster("local[6]")
     sc = SparkContext(conf = conf)
     #lines = sc.textFile("in/maildir/*") #all dataset
-    #lines = sc.textFile("in/allen-p/*") # less data
-    lines = sc.textFile("in/allen-p/_sent_mail/*") # partial data
+    
+    lines1 = sc.textFile("in/maildir/allen-p/*") # less data
+    try:
+        lines2 = sc.textFile("in/maildir/arnold-j/*") # test data   
+    except:
+        lines2 = None
+    try:
+        lines3 = sc.textFile("in/maildir/badeer-r/*") # test data   
+    except:
+        lines3 = None
+
+    #lines = sc.textFile("in/allen-p/_sent_mail/*") # partial data
     #lines = sc.textFile("in/test-data/*") # test data   
+    lines = lines1 + lines2 + lines3
     words = lines.flatMap(lambda line: line.split(" "))  
     wordCounts = words.countByValue()
     d = enchant.Dict("en_US") #english word
@@ -22,7 +34,7 @@ def word_count():
             if d.check(word): #if it is a english word
                 #ascii A-Z (65-90), a-z (97-122)
                 ascii_word = ord(word[0])
-                if 65 <= ascii_word <= 90 or 97 <= ascii_word <= 122:
+                if ascii_word in range(65, 91) or ascii_word in range(97, 123):
                     word_dic = {word: count}
                     #check if it is a palindrome
                     if get_palindrome(word, count):
@@ -48,7 +60,7 @@ def get_anagram(word, count, contents_anagram):
         return True
 
 def list_anagram():
-    #read the file and store into array
+    #read the file of all anagrams and store into array
     #get absolute path
     THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
     my_file = os.path.join(THIS_FOLDER, 'anagrams.txt')
