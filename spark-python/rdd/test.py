@@ -5,21 +5,26 @@ import os
 from collections import defaultdict
 import timeit
 
-@pysnooper.snoop()
 def word_count():
     # count words of palindrome and anagram respectively
     conf = SparkConf().setAppName("Apache spark").setMaster("local[6]")
     sc = SparkContext(conf = conf)
-    names = get_immediate_subdirectories("in/maildir")
-    lines = sc.textFile("in/test-data/*")
+    parent_path = "in/maildir/allen-p"
+    names = get_immediate_subdirectories(parent_path)
+    #lines = sc.textFile("in/test-data/*")
     for name in names:
-        lines_path = "in/maildir/" + name + "/*"
+        lines_path = parent_path + name + "/*"
         try:
-            line = sc.textFile(lines_path) 
-            lines += line
+            lines = sc.textFile(lines_path) 
+            words = lines.flatMap(lambda line: line.split(" "))  
+            wordCounts = words.countByValue()
+            words_filter(wordCounts)
         except:
             pass
-
+    lines = sc.textFile("in/maildir/allen-p/*") 
+    words = lines.flatMap(lambda line: line.split(" "))  
+    wordCounts = words.countByValue()
+    words_filter(wordCounts)
     #lines = sc.textFile("in/maildir/*") #all dataset
     
     #lines = sc.textFile("in/maildir/arnold-j/*") # less data
@@ -27,8 +32,10 @@ def word_count():
     #lines = sc.textFile("in/allen-p/_sent_mail/*") # partial data
     #lines = sc.textFile("in/test-data/*") # test data   
 
-    words = lines.flatMap(lambda line: line.split(" "))  
-    wordCounts = words.countByValue()
+
+
+def words_filter(wordCounts):
+    #filt words
     d = enchant.Dict("en_US") #english word
     contents_anagram = list_anagram()
     dic_anagram = []
