@@ -1,870 +1,219 @@
-abed
-bade
-bead
-abet
-beat
-beta
-abets
-baste
-betas
-beast
-beats
-abut
-tabu
-tuba
-acme
-came
-mace
-acre
-care
-race
-acres
-cares
-races
-scare
-actors
-costar
-castor
-actress
-casters
-recasts
-airmen
-marine
-remain
-alert
-alter
-later
-alerted
-altered
-related
-treadle
-ales
-leas
-sale
-seal
-aligned
-dealing
-leading
-allergy
-gallery
-largely
-regally
-amen
-mane
-mean
-name
-anew
-wane
-wean
-angel
-angle
-glean
-antler
-learnt
-rental
-apt
-pat
-tap
-arches
-chaser
-search
-are
-ear
-era
-arm
-mar
-ram
-arrest
-rarest
-raters
-starer
-artist
-strait
-traits
-arts
-rats
-star
-tars
-arcs
-cars
-scar
-ascent
-secant
-stance
-ascot
-coats
-coast
-tacos
-asleep
-elapse
-please
-asp
-pas
-sap
-spa
-aspired
-despair
-diapers
-praised
-asps
-pass
-saps
-spas
-assert
-asters
-stares
-aster
-rates
-stare
-taser
-tears
-ate
-eat
-eta
-tea
-aridest
-astride
-staider
-tardies
-tirades
-auctioned
-cautioned
-education
-awls
-laws
-slaw
-baker
-brake
-break
-bard
-brad
-drab
-bared
-beard
-bread
-debar
-barely
-barley
-bleary
-bats
-stab
-tabs
-begin
-being
-binge
-below
-bowel
-elbow
-bleats
-stable
-tables
-bluest
-bluets
-bustle
-sublet
-subtle
-bores
-robes
-sober
-brag
-garb
-grab
-calipers
-replicas
-spiracle
-caller
-cellar
-recall
-canter
-nectar
-recant
-trance
-canters
-nectars
-recants
-scanter
-trances
-capes
-paces
-space
-caret
-cater
-crate
-trace
-carets
-caters
-caster
-crates
-reacts
-recast
-traces
-catered
-created
-reacted
-cider
-cried
-dicer
-claimed
-decimal
-declaim
-medical
-claps
-clasp
-scalp
-code
-coed
-deco
-construe
-counters
-recounts
-trounces
-corset
-escort
-sector
-cratered
-retraced
-terraced
-cruel
-lucre
-ulcer
-dale
-deal
-lade
-lead
-dare
-dear
-read
-danger
-gander
-garden
-ranged
-darters
-retards
-starred
-traders
-dater
-rated
-trade
-tread
-daters
-trades
-treads
-stared
-dates
-sated
-stead
-dearth
-hatred
-thread
-dearths
-hardest
-hatreds
-threads
-trashed
-decanter
-cantered
-recanted
-deigns
-design
-signed
-singed
-deist
-diets
-edits
-sited
-tides
-demerit
-merited
-mitered
-denter
-rented
-tender
-deltas
-lasted
-slated
-demo
-dome
-mode
-desert
-deters
-rested
-detail
-dilate
-tailed
-detains
-instead
-sainted
-stained
-detour
-routed
-toured
-diaper
-paired
-repaid
-diet
-edit
-tide
-tied
-direst
-driest
-stride
-discounter
-introduces
-reductions
-does
-dose
-odes
-doters
-sorted
-stored
-dowry
-rowdy
-wordy
-drapes
-padres
-parsed
-rasped
-spared
-spread
-drawer
-redraw
-reward
-warder
-warred
-dues
-sued
-used
-duster
-rudest
-rusted
-earned
-endear
-neared
-earnest
-eastern
-nearest
-earns
-nears
-saner
-snare
-ears
-eras
-sear
-earth
-hater
-heart
-east
-eats
-sate
-seat
-teas
-elan
-lane
-lean
-emigrants
-mastering
-streaming
-emoter
-meteor
-remote
-enlarge
-general
-gleaner
-emit
-item
-mite
-time
-emits
-items
-mites
-smite
-times
-endive
-envied
-veined
-enlist
-inlets
-listen
-silent
-tinsel
-enters
-nester
-resent
-tenser
-eons
-nose
-ones
-esprit
-priest
-sprite
-stripe
-esprits
-persist
-spriest
-sprites
-stripes
-ester
-reset
-steer
-terse
-trees
-ether
-there
-three
-evil
-live
-veil
-vile
-filets
-itself
-stifle
-filter
-lifter
-trifle
-flow
-fowl
-wolf
-forest
-fortes
-foster
-softer
-glare
-lager
-large
-regal
-gilder
-girdle
-glider
-gnus
-guns
-snug
-sung
-goer
-gore
-ogre
-gory
-gyro
-orgy
-gust
-guts
-tugs
-hare
-hear
-rhea
-hares
-hears
-rheas
-share
-shear
-heaps
-phase
-shape
-heros
-hoers
-horse
-shore
-hoes
-hose
-shoe
-hops
-posh
-shop
-ideals
-ladies
-sailed
-inks
-sink
-skin
-ires
-rise
-sire
-kale
-lake
-leak
-lair
-liar
-rail
-lame
-male
-meal
-lameness
-nameless
-salesman
-lament
-mantel
-mantle
-mental
-lapse
-leaps
-pales
-peals
-pleas
-sepal
-last
-salt
-slat
-late
-tale
-teal
-leap
-pale
-peal
-plea
-leapt
-petal
-plate
-pleat
-least
-slate
-stale
-steal
-tales
-teals
-lemons
-melons
-solemn
-limes
-miles
-slime
-smile
-list
-silt
-slit
-lips
-lisp
-slip
-lisper
-perils
-pliers
-lister
-liters
-litres
-relist
-tilers
-livers
-silver
-sliver
-loop
-polo
-pool
-looped
-poodle
-pooled
-loops
-polos
-pools
-sloop
-spool
-lopes
-poles
-slope
-lots
-lost
-slot
-lusters
-results
-rustles
-manes
-manse
-means
-names
-marines
-remains
-seminar
-mast
-mats
-tams
-master
-stream
-tamers
-mate
-meat
-tame
-team
-mates
-meats
-steam
-tames
-teams
-merit
-mitre
-remit
-timer
-merits
-mister
-miters
-mitres
-remits
-timers
-mesa
-same
-seam
-nails
-slain
-snail
-naive
-ravine
-vainer
-nape
-neap
-pane
-naps
-pans
-snap
-span
-nets
-nest
-sent
-tens
-nope
-open
-peon
-pone
-noter
-toner
-tenor
-notes
-onset
-stone
-tones
-now
-own
-won
-observe
-obverse
-verbose
-opt
-pot
-top
-opts
-post
-pots
-stop
-tops
-owns
-snow
-sown
-paled
-pedal
-plead
-palest
-pastel
-petals
-plates
-pleats
-staple
-panel
-penal
-plane
-pares
-parse
-pears
-rapes
-reaps
-spare
-spear
-parley
-pearly
-player
-replay
-parroted
-predator
-prorated
-teardrop
-pars
-raps
-rasp
-spar
-parses
-passer
-spares
-sparse
-spears
-paltry
-partly
-raptly
-parts
-strap
-traps
-parse
-pears
-spare
-spear
-parsley
-parleys
-players
-replays
-sparely
-part
-rapt
-trap
-parties
-pastier
-pirates
-traipse
-past
-pats
-spat
-taps
-paste
-peats
-septa
-spate
-tapes
-paws
-swap
-wasp
-pelts
-slept
-spelt
-pertness
-presents
-serpents
-pest
-pets
-step
-piers
-pries
-spire
-pines
-snipe
-spine
-pinto
-piton
-point
-pintos
-piston
-pitons
-points
-pores
-poser
-prose
-ropes
-spore
-potters
-protest
-spotter
-present
-repents
-serpent
-raps
-rasp
-spar
-rashes
-shares
-shears
-rattles
-starlet
-startle
-realist
-saltier
-retails
-recused
-reduces
-rescued
-secured
-reigns
-resign
-signer
-singer
-reins
-resin
-rinse
-risen
-siren
-repaint
-painter
-pertain
-repaints
-painters
-pantries
-pertains
-rescue
-recuse
-secure
-reset
-steer
-terse
-trees
-resort
-roster
-sorter
-restrain
-retrains
-strainer
-terrains
-trainers
-retests
-setter
-street
-tester
-retrain
-terrain
-trainer
-rite
-tier
-tire
-rites
-tiers
-tires
-tries
-rosiest
-sorties
-stories
-saint
-satin
-stain
-salve
-slave
-vales
-veals
-seated
-sedate
-teased
-serve
-sever
-veers
-verse
-sinew
-swine
-wines
-wisens
-skate
-stake
-steak
-takes
-teaks
-skated
-staked
-tasked
-slates
-steals
-tassel
-state
-taste
-teats
-steer
-reset
-terse
-trees
-stew
-wets
-wets
-stow
-tows
-twos
-sway
-ways
-yaws
-taster
-tetras
-treats
-thickets
-thickest
-thickset
-weird
-wired
-wider
-whiter
-wither
-writhe
+acer	acers	aces	aches	acme	acned	acre
+acres	act	acts	acyl	add	adds	adverb
+aesc	aether	aethers	afield	aft	agree	agrees
+ags	ah	ahs	aide	aides	airings	airmen
+alloy	almes	alp	alps	altern	altrices	alts
+am	amen	amp	amps anemic	anglist	anils	ant
+antis	antler	antlers	any	ape	aper	apt
+arb	arc	arcs	are	ared	ares	argle
+aril	arising	arm	armpit	arms	arse	art
+article	articles	arts	arty	ash	aside	aspired
+asps	ate	ates	atoners	attic	aves	aye
+backward	bad	bag	bags	bake	baker	balm
+balms	bar	bare	bast	bat	batlet	bats
+battel	battle	beak	bear	begin	being	below
+best	bets	binge	blam	blams	blot	blow
+bludier	bluest	bluets	bolt	bombed	bombing	borde
+bored	bores	boss	bourne	bowel	bowl	bra
+brae	brag	brake	braved	break	brief	brose
+brush	buhrs	builder	burden	burned	bury	bush
+bust	bustle	but	butles	buts	cab	cabs
+cadres	cafe	caller	calm	calms	calo	calos
+came	caned	canoe	canoes	cans	cape	car
+care	cares	caret	carol	carp	cars	carse
+carte	case	cask	casks	cast	cat	cater
+cats	cause	causes	ceas	cedars	cedi	cellar
+cents	cereus	ceruse	cesure	charm	charmer	charming
+chase	cheaters	cheating	chetnik	chetniks	chin	chit
+choked	chum   cinema	cion	citrus	clam	clams	claro
+clay	cloud	coal	coals	cocaine	cod	codes
+coeds	coin	cola	colas	comics	cone	coni
+cool	coral	cork	corks	corset	corvet	cosed
+cosmic	coster	could	covert	crap	crate	crews
+dab	dad	dads	dah	dairy	dale	dalets
+dali	dam	dance	dare	dashed	dawn	deaf
+deal	dealer	dear	dearer	dearths	death	deaws
+declines	decos	decree	deens	defer	deil	delayer
+deli	deltas	denes	dense	denser	desalt	deserver
+despair	devote	dew	dews	dial	diaper	diapers
+diary	dice	diel	diet	dikes	dimple	direr
+disease	disk	disks	dite	doc	doen	dog
+dogs	don	done	doom	dozen	draw	drawback
+dreare	drier	dune	dunite	dusty	eager	eagers
+eagre	eagres	ear	eard	early	earn	earner
+ears	earthy	east	eastling	eat	eath	eats
+edit	eel	egos	eh	eild	elbow	elints
+emit	emits	emoter	enders	enfiring	enlist	enlisted
+era	eras	eros	escar	escort	ester	eta
+etas	ether	evil	evils	ewts	except	exist
+exits	expect	face	fade	failed	faker	fare
+farmed	farming	fast	fat	fate	fats	fear
+feasts	feat	feel	feels	feer	felid	felt
+fere	festas	feta	fiber	fibre	field	filed
+filer	filets	filler	fillers	finder	finer	finger
+fired	fires	fist	fitness	fits	flee	flees
+flesh	flied	flier	fliest	flites	flog	flow
+flue	flues	form	former	forth	fowl	frae
+framed	framing	freak	free	freed	fried	friend
+fries	fringe	frise	from	froth	fuel	fuels
+furs	fusel	gab	gabs	gals	gaps	garb
+gas	gasp	gater	geare	geares	gel	gelatins
+gels	genitals	geos	girn	glare	god	gods
+goes	golf	grab	grate	grease	great	grin
+grues	gulp	gulps	gum	gunshot	gust	guts
+ha	had	haet	halls	halses	hams	hangover
+hardest	hardset	harps	has	hassel	hassle	hate
+hated	hatreds	hay	he	hearty	heat	heater
+heaters	hectares	heir	heirs	hereat	hewn	hikes
+hire	hires	ho	hocked	hocks	hoes	hognuts
+hooks	hose	hoses	host	hots	houts	how
+howres	hubs	hug	hums	hustle	hustling	huts
+iceman iced	icon	idea	ideas	idle	impart	impled
+imprints	incest	inch	infer	infests	infringe	ink
+inks	inlets	ins	insect	instar	insult	itch
+item	items	its	itself	jest	jets	joiner
+joiners	just	juts	kale	kebar	keel	keels
+keen	kids	kills	kiln	kin	kins	kiss
+kisser	kitchen	kitchens	knee	knitches	koas	krises
+lacy	lade	laered	lager	lags	laid	lair
+lake	lamb	lambs	lameness	lames	lamp	lap
+lapins	laps	lapse	large	lari	lases	lashes
+last	lasted	lasting	lasts	late	lats	layer
+layered	layers	laymen	layover	lays	lead	leader
+leak	leams	leap	leaps	leared	learnt	leary
+leat	lee	leek	leeks	left	leg	legs
+leke	lemon	leper	lessened	lessons	levis	liar
+license	licensed	licks	lied	lifer	lime	limes
+limped	link	lino	lintseed	lion	lippers	lips
+lira	lisp	list	listen	listened	listing	lists
+lits	live	lives	loca	loco	loin	lookout
+lookouts	looped	loops	loot	lose	lost	loto
+lots	loyal	lump	lure	lured	lures	luring
+ma	mace	mad	mainer	maleness	males	mane
+maneless	manors	manures	map	maples	maps	mar
+march	marcher	marching	mare	marine	marital	markers
+marons	mars	martial	marts	mash	mashes	mast
+mate	mated	mates	mating	mats	meals	mean
+meanly	meat	meats	melas	melon	melts	mesal
+meta	meteor	metis	metols	mile	miles	misprint
+mite	mites	mobbed	mobbing	moist	moits	molest
+mono	mood	moon	moor	motels	much	mug
+murenas	mush	mutilate	nags	nails	name	nameless
+namely	nap	nare	nat	nay	near	nearer
+needless	needs	nema	neon	nest	net	nets
+nevi	nicest	night	nights	nip	nips	nis
+no	nod	node	noil	none	normas	not
+note	noted	noteless	notices	noughts	now	nows
+nude	nudity	nur	nurs	oaks	ocean	oceanic
+oceans	oh	oils	okas	oles	omits	on
+once	opener	opt	option	opts	orbed	ores
+organist	oriental	ought	oughts	ours	outlook	outlooks
+overhang	overlay	own	owns	owt	pace	packer
+packers	padle	painter	paired	pal	pale	paled
+pales	palest	palets	palm	pals	pam	pams
+pan	panel	pardie	pare	parks	partim	parts
+pass	pastel	pat	pate	pay	pea	peaks
+peal	peals	pear	peat	pedal	pela	pelas
+pelmas	peltas	pelts	penal	penster	per	pereon
+peri	perone	pertain	pest	petals	pets	pier
+pills	pin	pinots	pins	pintos	piston	pit
+pitons	pits	plains	plane	plaste	plates	plea
+plead	pleas	pleats	plena	plug	plugs	plum
+pointers	points	polos	poodle	pooled	pools	pore
+pores	porniest	ports	poser	post	postin	postman
+posts	pot	potins	potion	pots	praised	prats
+prays	pre	present	printer	pronto	prose	prost
+proteins	proton	pya	quiet	quite	race	races
+racket	rade	ragee	ragees	raginis	rail	raising
+ram	rams	ramson	ransom	rape	rare	rase
+raspy	rast	rat	rats	raw	rayle	rayles
+react	read	reader	realist	ream	rean	reap
+rear	reared	rebuild	recall	recede	rechates	recheats
+recital	recitals	recta	rectos	recuse	recused	redeal
+redear	redfin	reduces	reearn	reef	reest	refed
+refill	refills	refind	refining	reform	regal	reheat
+reheats	reifs	reins	reird	reists	rejoin	rejoins
+relation	relay	relayed	relays	remain	remarks	remote
+rental	rentals	reopen	rep	repack	repacks	repaid
+repaint	repel	repents	repins	repo	repoints	repone
+repos	reprint	reread	rescue	rescued	resell	resells
+resend	reserve	reserved	reset	reshow	resin	resins
+resist	resists	resits	retack	retag	retails	retes
+rethink	retrain	retund	reveres	reverse	reversed	review
+reviews	rhies	rial	rictus	rider	rifle	rines
+ring	rinse	rinses	ripe	ripens	ripples	risen
+rite	rival	roasting	robed	robes	rock	rocks
+roes	romans	room	rope	ropes	rose	roses
+rout	rowdier	ruby	rule	ruled	rules	ruling
+run	runs	runted	runts	rust	rustic	rusts
+ruts	sack	sacks	sacred	safest	sag	saint
+sairing	salep	sales	salesmen	salp	salse	salt
+salted	saltern	saltier	salting	saltire	salts	samel
+samp	sample	sang	santir	saps	sate	satem
+satin	sauce	sauces	save	saves	saw	sawed
+scab	scan	scar	scare	scared	scat	scent
+scient	scoed	scoter	scrae	screw	seals	sear
+seaside	seat	section	sector	secure	secured	seducer
+sego	selahs	seldseen	selenic	selictar	seller	sellers
+senator	sender	sensual	sent	sepal	sept	septal
+sera	serac	serif	serin	serins	serpent	serve
+serves	seta	sever	severer	severs	sha	shaded
+shales	shall	sham	shames	shams	sharp	sheals
+sheik	shelf	shier	shire	shock	shoe	shoes
+shook	shot	shotgun	shout	shower	shrub	shut
+sift	silence	silenced	silent	silo	silt	silting
+silts	silvers	sin	sink	sinks	siren	sirens
+sister	sisters	sit	sixte	skates	skid	skids
+skied	skiers	skill	skin	skins	skis	skries
+slaes	slag	slain	slap	slat	slated	slatier
+slating	slats	slay	slayer	sleek	slept	sleuth
+slick	slime	slip	slipper	slipt	slit	slits
+slive	slivers	sloe	sloop	slot	smart	smash
+smelt	smile	smite	snag	snail	snaps	sneed
+snip	sniper	snips	snow	soak	sober	sobs
+soil	sole	soli	sonless	sore	sores	soth
+sought	sour	south	sown	spag	spake	spale
+spam	spans	spark	spart	spas	spaws	speak
+speal	spelt	spet	spill	spilt	spin	spinal
+spins	spinto	spirt	spit	split	spool	spore
+sport	spot	spots	sprat	spray	sprit	stab
+stack	stain	stakes	staled	staling	stalk	staple
+star	stated	states	steaks	stealing	steam	steer
+sten	step	stere	sterical	sternal	stew	stick
+stifle	stiling	stilt	stime	stires	stirp	stop
+stops	stove	strain	strap	straw	strip	strop
+stub	study	sublet	subtle	sue	sues	sunlight
+sunlit	supper	surf	surge	surname	swaps	swart
+sweat	swell	swig	swing	swipe	tab	tablet
+tabs	tacit	tacker	tacks	tae	tael	taes
+taglines	taileron	tailers	tains	talcier	tale	talks
+tame	tamed	tames	taming	tampons	tams	tan
+tap	tape	tar	targe	tarps	tars	tasset
+tasted	tastes	tavs	tawse	tea	teachers	teaching
+teal	team	teams	teas	teers	tela	ten
+tens	tepa	tepals	teres	terga	ternal	terrain
+terse	tews	thae	thaw	there	thicken	thickens
+thing	things	thinker	thous	threads	three	thus
+tich	ticks	tide	tied	tier	tilings	tils
+tilts	time	times	tinsel	tinseled	tip	tips
+tire	tired	tis	ton	tone	toned	toneless
+tool	top	tops	topsman	tosh	tough	toughs
+tour	tow	trace	trails	trainer	trains	trams
+traps	trashed	tray	treason	trees	trials	tride
+trie	tried	trips	tropines	trout	truss	tsar
+tub	tubs	tugs	turned	turns	tush	tutor
+twaes	two	ugh	ultimate	unbore	unbred	unde
+unite	united	unlit	unrobe	unseals	untidy	untie
+untied	until	uppers	urges	urn	urns	use
+uses	vaes	vail	vali	vase	vases	vast
+vats	vector	veers	veil	veils	vein	veins
+verse	verses	veto	vetoed	vial	viewer	viewers
+vile	vine	vines	viral	visne	vlei	vleis
+vlies	vote	votes	vowels	wades	waist	waits
+wake	wand	war	ward	warp	warps	warst
+warts	was	wasps	waste	way	weak	weather
+weathers	wed	weds	weka	wells	west	wetas
+wets	what	when	whereat	who	whores	wigs
+wings	wipes	wolf	wolves	won	wons	wordier
+worried	wot	wrap	wraps	wrast	wreathe	wreathes
+yah	yaird	yap	yaw	yea	zendo	zoned

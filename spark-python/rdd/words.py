@@ -5,33 +5,37 @@ import os
 from collections import defaultdict
 import timeit
 
-
+@pysnooper.snoop()
 def word_count():
     '''count words of palindrome and anagram respectively'''
-    conf = SparkConf().setAppName("Apache spark").setMaster("local[6]")
+    conf = SparkConf().setAppName("Apache spark").setMaster("local[4]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
-    parent_path = "in/maildir/allen-p"
+    #parent_path = "in/maildir"
+    parent_path = "in/less-data/allen-p"
     names = get_immediate_subdirectories(parent_path)
     dic_palindrome = {}
     dic_anagram = {}
     invalid_path = [] # some subdirectories are not readable
     #count = 1
-    for name in names:
-        #print("It is the %dth number of %d" % (count,len(names)))
-        #count += 1
-        lines_path = parent_path + "/" + name + "/*"
-        try:
-            lines = sc.textFile(lines_path) 
-            words = lines.flatMap(lambda line: line.split(" "))  
-            wordCounts = words.countByValue()
-            dic_p, dic_a = words_filter(wordCounts)
-            dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
-            dic_palindrome.update(dic_palindrome_copy)            
-            dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
-            dic_anagram.update(dic_anagram_copy)
-        except:
-            invalid_path.append(lines_path)
-            pass
+    for sub_names in names:
+        sublines_path = parent_path + "/" + sub_names
+        sub_sub_names = get_immediate_subdirectories(sublines_path)
+        for name in sub_sub_names:
+            #print("It is the %dth number of %d" % (count,len(names)))
+            #count += 1
+            lines_path = sublines_path + "/" + name + "/*"
+            try:
+                lines = sc.textFile(lines_path) 
+                words = lines.flatMap(lambda line: line.split(" "))  
+                wordCounts = words.countByValue()
+                dic_p, dic_a = words_filter(wordCounts)
+                dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
+                dic_palindrome.update(dic_palindrome_copy)            
+                dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
+                dic_anagram.update(dic_anagram_copy)
+            except:
+                invalid_path.append(lines_path)
+                pass
     print("================================================================")
     print("Number of invalide paths: %d \nThey are %s" % (len(invalid_path), invalid_path))
     print("=============================")  
@@ -53,7 +57,7 @@ def merge_dict(dict1, dict2):
    return dict3
 
 def words_filter(wordCounts):
-    '''filt words'''
+    '''filter words'''
     d = enchant.Dict("en_US") #english word
     contents_anagram = list_anagram()
     dic_anagram = {}
