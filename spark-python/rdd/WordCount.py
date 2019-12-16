@@ -6,51 +6,65 @@ import os
 
 
 def word_count():
-    stop0 = timeit.default_timer()
-    conf = SparkConf().setAppName("word count").setMaster("local[5]")
-    sc = SparkContext(conf = conf)
-    parent_path = "in/maildir/kaminski-v/c/mangmt"
-    names = get_immediate_subdirectories(parent_path)
-    stop1 = timeit.default_timer()
-    stop2 = timeit.default_timer()
-    stop3 = timeit.default_timer()  
-    stop4 = timeit.default_timer()  
-    stop5 = timeit.default_timer()  
-    for sub_names in names:
-        sublines_path = parent_path + "/" + sub_names
-        sub_sub_names = get_immediate_subdirectories(sublines_path)      
-        for name in sub_sub_names:
-            #print("It is the %dth number of %d" % (count,len(names)))
-            #count += 1
-            lines_path = sublines_path + "/" + name + "/*"
-            stop1 += timeit.default_timer()
-            lines = sc.textFile(lines_path) 
-            stop2 += timeit.default_timer()
-            lines_filter = lines.filter(get_palindrome)
-            stop3 += timeit.default_timer()   
-            words = lines_filter.flatMap(lambda line: line.split(" "))
-            stop4 += timeit.default_timer()   
-            wordCounts = words.countByValue()
-            stop5 += timeit.default_timer()
-            print(wordCounts)
-    stop6 = timeit.default_timer()
+    #conf = SparkConf().setAppName("word count").setMaster("local[5]")
+    #sc = SparkContext(conf = conf)
+    parent_path = "in/maildir"
+    path_list = get_all_path(parent_path)
+    print(path_list)
+    print("number of path_list: ", len(path_list))
+    
 
-    
- 
-    print('Runtime1: ', (stop2 - stop1)) 
-    print('Runtime2: ', (stop3 - stop2)) 
-    print('Runtime3: ', (stop4 - stop3)) 
-    print('Runtime4: ', (stop5 - stop4)) 
-    print('Wordcounts Runtime: ', (stop6 - stop0)) 
-    
-    '''
+def get_all_path(parent_path):
+    '''return all direstoray paths'''
+    names = get_immediate_subdirectories(parent_path)
+    path_list = []
+    for sub_name in names:
+        sub_sub_path, sub_sub_names = get_sub_directory(parent_path, sub_name)
+        if sub_sub_names:
+            for sub_sub_name in sub_sub_names:
+                sub_sub_sub_path, sub_sub_sub_names = get_sub_directory(sub_sub_path, sub_sub_name)
+                if sub_sub_sub_names:
+                    for sub_sub_sub_name in sub_sub_sub_names:
+                        sub_sub_sub_sub_path, sub_sub_sub_sub_names = get_sub_directory(sub_sub_sub_path, sub_sub_sub_name)
+                        if sub_sub_sub_sub_names:
+                            for sub_sub_sub_sub_name in sub_sub_sub_sub_names:
+                                sub_sub_sub_sub_sub_path, sub_sub_sub_sub_sub_names = get_sub_directory(sub_sub_sub_sub_path, sub_sub_sub_sub_name)
+                                if sub_sub_sub_sub_sub_names:
+                                    for sub_sub_sub_sub_sub_name in sub_sub_sub_sub_sub_names:
+                                        sub_sub_sub_sub_sub_sub_path, sub_sub_sub_sub_sub_sub_names = get_sub_directory(sub_sub_sub_sub_path, sub_sub_sub_sub_name)                                        
+                                        if sub_sub_sub_sub_sub_sub_names:
+                                            for sub_sub_sub_sub_sub_sub_name in sub_sub_sub_sub_sub_sub_names:
+                                                path_list.append(sub_sub_sub_sub_sub_sub_path  + "/" + sub_sub_sub_sub_sub_sub_name + "/*")
+                                    
+                                        else:
+                                            path_list.append(sub_sub_sub_sub_sub_path  + "/" + sub_sub_sub_sub_sub_name + "/*")
+
+                                else:    
+                                    path_list.append(sub_sub_sub_sub_path  + "/" + sub_sub_sub_sub_name + "/*")
+                                
+                        else:
+                            path_list.append(sub_sub_sub_path + "/" + sub_sub_sub_name + "/*")
+                
+                else:
+                    path_list.append(sub_sub_path + "/" + sub_sub_name + "/*")
+
+        else:
+            path_list.append(parent_path + "/" + sub_name + "/*")
+    return path_list
+
+def get_words_count(path, name, sc):
+    '''run word count'''
+    lines_path = path + "/" + name + "/*"
+    lines = sc.textFile(lines_path) 
+    lines_filter = lines.filter(get_palindrome)
+    words = lines_filter.flatMap(lambda line: line.split(" "))
     wordCounts = words.countByValue()
-    
-    for word, count in wordCounts.items():
-        if word == word[::-1]:
-            print("True")
-        print("{} : {}".format(word, count))
-    '''
+    print(wordCounts)
+    return lines_path
+
+def get_sub_directory(path, names):
+    sublines_path = path + "/" + names
+    return (sublines_path, get_immediate_subdirectories(sublines_path))      
 
 def get_immediate_subdirectories(a_dir):
     '''get subdiretory of dataset'''
@@ -67,6 +81,7 @@ def get_palindrome(word):
 
 def main():
     '''cauculate runtime'''
+    path_list = []
     start = timeit.default_timer()
     word_count()
     stop = timeit.default_timer()
