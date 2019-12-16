@@ -8,12 +8,12 @@ import timeit
 
 def word_count():
     '''count words of palindrome and anagram respectively'''
-    conf = SparkConf().setAppName("Apache spark").setMaster("local[4]") # 4 cores [*] all available cores
+    conf = SparkConf().setAppName("Apache spark").setMaster("local[5]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
-    parent_path = "in/maildir/allen-p"
+    parent_path = "in/maildir/dasovich-j"
     names = get_immediate_subdirectories(parent_path)
     dic_palindrome = {}
-    dic_anagram = {}
+    dic_anagram = {}   
     invalid_path = [] # some subdirectories are not readable
     #count = 1
     for name in names:
@@ -66,25 +66,22 @@ def words_filter(wordCounts):
                 if ascii_word in range(65, 91) or ascii_word in range(97, 123):
                     word_dic = {word: count}
                     #check if it is a palindrome
-                    if get_palindrome(word, count):
+                    if get_palindrome(word):
                         dic_palindrome.update(word_dic)
                     #check if it is a anagram
-                    if get_anagram(word, count, contents_anagram):  
+                    if get_anagram(word, contents_anagram):  
                         dic_anagram.update(word_dic)
                         
     return (dic_palindrome, dic_anagram)
 
-def get_palindrome(word, count):
+def get_palindrome(word):
     '''palindrome'''
-    if word == word[::-1]:  
-        #not same characters: "AAA","BBB"...
-        if not all(c == word[0] for c in word[1:]):
-            return True
+    #not same characters: "AAA","BBB"...
+    return (word == word[::-1] and not all(c == word[0] for c in word[1:]))
 
-def get_anagram(word, count, contents_anagram):
+def get_anagram(word, contents_anagram):
     '''anagram'''
-    if word in contents_anagram:
-        return True
+    return (word in contents_anagram)
 
 def list_anagram():
     '''read the input file of all anagrams and store into array'''
@@ -115,7 +112,8 @@ def main():
     start = timeit.default_timer()
     word_count()
     stop = timeit.default_timer()
-    print('Runtime: ', stop - start) 
+    time = stop - start
+    print('Runtime: ', time)  
 
 if __name__ == "__main__":
     main()

@@ -6,41 +6,28 @@ from collections import defaultdict
 import timeit
 from os import walk
 
+@pysnooper.snoop()
 def word_count():
     '''count words of palindrome and anagram respectively'''
     conf = SparkConf().setAppName("Apache spark").setMaster("local[4]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
-    #parent_path = "in/maildir"
-    parent_path = "in/less-data/allen-p"
-    names = get_immediate_subdirectories(parent_path)
+    input_path = "in/maildir/allen-p/notes_inbox"
     dic_palindrome = {}
-    dic_anagram = {}
-    invalid_path = [] # some subdirectories might be not readable
-    #count = 1
-    for sub_names in names:
-        sub_path = parent_path + "/" + sub_names
-        sub_sub_names = get_immediate_subdirectories(sub_path)
-        for name in sub_sub_names:
-            #print("It is the %dth number of %d" % (count,len(names)))
-            #count += 1
-            try:
-                lines_path = sub_path + "/" + name + "/*"
-            except: 
-                for (dirpath, dirnames, filenames) in walk(sub_path):
-                   lines_path =  sub_path + "/" + filenames
-  
-            try:
-                lines = sc.textFile(lines_path) 
-                words = lines.flatMap(lambda line: line.split(" "))  
-                wordCounts = words.countByValue()
-                dic_p, dic_a = words_filter(wordCounts)
-                dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
-                dic_palindrome.update(dic_palindrome_copy)            
-                dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
-                dic_anagram.update(dic_anagram_copy)
-            except:
-                invalid_path.append(lines_path)
-                pass
+    dic_anagram = {}   
+    invalid_path = [] # some subdirectories are not readable
+   
+    try:
+        rdd=sc.textFile(input_path, 4)
+        words = rdd.flatMap(lambda line: line.split(" "))  
+        wordCounts = words.countByValue()
+        dic_p, dic_a = words_filter(wordCounts)
+        dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
+        dic_palindrome.update(dic_palindrome_copy)            
+        dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
+        dic_anagram.update(dic_anagram_copy)
+    except:
+        invalid_path.append(input_path)
+        pass
     print("================================================================")
     print("Number of invalide paths: %d \nThey are %s" % (len(invalid_path), invalid_path))
     print("=============================")  
@@ -63,37 +50,37 @@ def merge_dict(dict1, dict2):
 
 def words_filter(wordCounts):
     '''filter words'''
-    d = enchant.Dict("en_US") #english word
     contents_anagram = list_anagram()
     dic_anagram = {}
     dic_palindrome = {}
     for word, count in wordCounts.items():
         if len(word) > 2: #a work must contain more than 2 letters
-            if d.check(word): #if it is a english word
-                #letters only: ascii A-Z (65-90), a-z (97-122)
-                ascii_word = ord(word[0])
-                if ascii_word in range(65, 91) or ascii_word in range(97, 123):
-                    word_dic = {word: count}
-                    #check if it is a palindrome
-                    if get_palindrome(word, count):
-                        dic_palindrome.update(word_dic)
-                    #check if it is a anagram
-                    if get_anagram(word, count, contents_anagram):  
-                        dic_anagram.update(word_dic)
-                        
+            word_dic = {word: count}
+            #check if it is a palindrome
+            if get_palindrome(word):
+                dic_palindrome.update(word_dic)
+            #check if it is a anagram
+            if get_anagram(word, contents_anagram):  
+                dic_anagram.update(word_dic)
+                
     return (dic_palindrome, dic_anagram)
 
-def get_palindrome(word, count):
+def get_palindrome(word):
     '''palindrome'''
-    if word == word[::-1]:  
-        #not same characters: "AAA","BBB"...
-        if not all(c == word[0] for c in word[1:]):
-            return True
+    d = enchant.Dict("en_US") #english word
+    if d.check(word): #if it is a english word
+        #letters only: ascii A-Z (65-90), a-z (97-122)
+        ascii_word = ord(word[0])
+        if ascii_word in range(65, 91) or ascii_word in range(97, 123):            
+            if word == word[::-1]:  
+                #not same characters: "AAA","BBB"...
+                if not all(c == word[0] for c in word[1:]):
+                    return True
 
-def get_anagram(word, count, contents_anagram):
+def get_anagram(word, contents_anagram):
     '''anagram'''
-    if word in contents_anagram:
-        return True
+    return (word in contents_anagram)
+
 
 def list_anagram():
     '''read the input file of all anagrams and store into array'''

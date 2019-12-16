@@ -6,5 +6,4 @@ if __name__ == "__main__":
   mypath = "in/test-data"
   f = []
   for (dirpath, dirnames, filenames) in walk(mypath):
-    f.extend(filenames)
-  print(f)
+    print(filenames)
