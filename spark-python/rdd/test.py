@@ -6,7 +6,7 @@ from collections import defaultdict
 import timeit
 from os import walk
 
-@pysnooper.snoop()
+
 def word_count():
     '''count words of palindrome and anagram respectively'''
     conf = SparkConf().setAppName("Apache spark").setMaster("local[4]") # 4 cores [*] all available cores

@@ -10,7 +10,7 @@ def word_count():
     '''count words of palindrome and anagram respectively'''
     conf = SparkConf().setAppName("Apache spark").setMaster("local[5]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
-    parent_path = "in/maildir/dasovich-j"
+    parent_path = "in/maildir/allen-p"
     names = get_immediate_subdirectories(parent_path)
     dic_palindrome = {}
     dic_anagram = {}   

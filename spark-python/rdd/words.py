@@ -4,40 +4,29 @@ import enchant
 import os
 from collections import defaultdict
 import timeit
+import PathList
 
 def word_count():
     '''count words of palindrome and anagram respectively'''
-    conf = SparkConf().setAppName("Apache spark").setMaster("local[4]") # 4 cores [*] all available cores
+    conf = SparkConf().setAppName("Apache spark").setMaster("local[5]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
-    #parent_path = "in/maildir"
-    parent_path = "in/less-data/allen-p/*"
-    names = get_immediate_subdirectories(parent_path)
+    parent_path = "in/maildir"
     dic_palindrome = {}
-    dic_anagram = {}
-    invalid_path = [] # some subdirectories are not readable
-    #count = 1
-    for sub_names in names:
-        sublines_path = parent_path + "/" + sub_names
-        sub_sub_names = get_immediate_subdirectories(sublines_path)
-        if sub_sub_names:
-            for name in sub_sub_names:
-                #print("It is the %dth number of %d" % (count,len(names)))
-                #count += 1
-                lines_path = sublines_path + "/" + name + "/*"
-                try:
-                    lines = sc.textFile(lines_path) 
-                    words = lines.flatMap(lambda line: line.split(" "))  
-                    wordCounts = words.countByValue()
-                    dic_p, dic_a = words_filter(wordCounts)
-                    dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
-                    dic_palindrome.update(dic_palindrome_copy)            
-                    dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
-                    dic_anagram.update(dic_anagram_copy)
-                except:
-                    invalid_path.append(lines_path)
-                    pass
-    print("================================================================")
-    print("Number of invalide paths: %d \nThey are %s" % (len(invalid_path), invalid_path))
+    dic_anagram = {}   
+    path_list = PathList.folder_path(parent_path)
+    for lines_path in path_list:
+        lines = sc.textFile(lines_path + "/*") 
+        words = lines.flatMap(lambda line: line.split(" "))  
+        wordCounts = words.countByValue()
+        dic_p, dic_a = words_filter(wordCounts)
+        dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
+        dic_palindrome.update(dic_palindrome_copy)            
+        dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
+        dic_anagram.update(dic_anagram_copy)
+
+    print("================================================================")    
+    print(path_list)
+    print("number of path_list: ", len(path_list))
     print("=============================")  
     print("Palindrome") 
     print(dic_palindrome) 
@@ -45,7 +34,17 @@ def word_count():
     print("Anagram") 
     group_dic_anagram = group_anagram(dic_anagram)
     print(group_dic_anagram)
+    print(type(group_dic_anagram))
     print("================================================================")
+    # Write-Overwrites 
+    file_palindrome = open("out/spark-palindrome.txt","w")#write mode 
+    for key, value in dic_palindrome.items():
+        file_palindrome.write(key + ": " + str(value) + "\n") 
+    file_palindrome.close() 
+    file_anagarm = open("out/spark-anagrams.txt","w")#write mode 
+    for line in group_dic_anagram:
+        file_anagarm.write(str(line) + "\n") 
+    file_anagarm.close() 
 
 def merge_dict(dict1, dict2):
    ''' Merge dictionaries and keep values of common keys in list'''
@@ -70,22 +69,20 @@ def words_filter(wordCounts):
                 if ascii_word in range(65, 91) or ascii_word in range(97, 123):
                     word_dic = {word: count}
                     #check if it is a palindrome
-                    if get_palindrome(word, count):
+                    if get_palindrome(word):
                         dic_palindrome.update(word_dic)
                     #check if it is a anagram
-                    if get_anagram(word, count, contents_anagram):  
+                    if get_anagram(word, contents_anagram):  
                         dic_anagram.update(word_dic)
                         
     return (dic_palindrome, dic_anagram)
 
-def get_palindrome(word, count):
+def get_palindrome(word):
     '''palindrome'''
     #not same characters: "AAA","BBB"...
+    return (word == word[::-1] and not all(c == word[0] for c in word[1:]))
 
-    return (word == word[::-1] and not all(c == word[0] for c in word[1:]))  
-
-
-def get_anagram(word, count, contents_anagram):
+def get_anagram(word, contents_anagram):
     '''anagram'''
     return (word in contents_anagram)
 
@@ -106,19 +103,15 @@ def group_anagram(dic_anagram):
         for key in ele:
             temp[str(sorted(key))].append(ele) 
     res = list(temp.values())   
-    return str(res)
-
-def get_immediate_subdirectories(a_dir):
-    '''get subdiretory of dataset'''
-    return [name for name in os.listdir(a_dir)
-            if os.path.isdir(os.path.join(a_dir, name))]
+    return res
 
 def main():
     '''cauculate runtime'''
     start = timeit.default_timer()
     word_count()
     stop = timeit.default_timer()
-    print('Runtime: ', stop - start) 
+    time = stop - start
+    print('Runtime: ', time)  
 
 if __name__ == "__main__":
     main()
