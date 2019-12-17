@@ -1,4 +1,5 @@
 """
+for subdirectionary only
 read all files at the same time
 """
 
@@ -19,36 +20,39 @@ def word_count():
     '''count words of palindrome and anagram respectively'''
     conf = SparkConf().setAppName("Apache spark").setMaster("local[5]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
-    filename = "dasovich-j"
-    parent_path = "in/maildir/" + filename + "/*"
-    dic_palindrome = {}
-    dic_anagram = {}   
-    dic_palindrome = {}
-    dic_anagram = {}   
+    filenames = ["dasovich-j"]
+    for filename in filenames:
+        parent_path = "in/maildir/" + filename + "/*"
+        dic_palindrome = {}
+        dic_anagram = {}   
 
-    lines = sc.textFile(parent_path) 
-    words = lines.flatMap(lambda line: line.split(" "))  
-    wordCounts = words.countByValue()
-    dic_p, dic_a = words_filter(wordCounts)
-    dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
-    dic_palindrome.update(dic_palindrome_copy)            
-    dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
-    dic_anagram.update(dic_anagram_copy)           
+        lines = sc.textFile(parent_path) 
+        init_words = lines.flatMap(lambda line: line.split(" "))  
+        words = init_words.filter(lenth_words)
+        wordCounts = words.countByValue()
+        dic_p, dic_a = words_filter(wordCounts)
+        dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
+        dic_palindrome.update(dic_palindrome_copy)            
+        dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
+        dic_anagram.update(dic_anagram_copy)           
 
-    print("================================================================")    
-    print("Palindrome") 
-    print(dic_palindrome) 
-    print("=============================")
-    print("Anagram") 
-    group_dic_anagram = group_anagram(dic_anagram)
-    print(group_dic_anagram)
-    print("================================================================")
+        print("================================================================")    
+        print("Palindrome") 
+        print(dic_palindrome) 
+        print("=============================")
+        print("Anagram") 
+        group_dic_anagram = group_anagram(dic_anagram)
+        print(group_dic_anagram)
+        print("================================================================")
 
-    #json file
-    with open('out/test/spark-palindrome' + filename + '.json', 'w') as outfile:
-        json.dump(dic_palindrome, outfile)
-    with open('out/test/spark-anagram' + filename + '.json', 'w') as outfile:
-        json.dump(dic_anagram, outfile)
+        #json file
+        with open('out/invalid/spark-palindrome/' + filename + '.json', 'w') as outfile:
+            json.dump(dic_palindrome, outfile)
+        with open('out/invalid/spark-anagram/' + filename + '.json', 'w') as outfile:
+            json.dump(dic_anagram, outfile)
+
+def lenth_words(word):
+    return (len(word) in range(2, 20))
 
 def merge_dict(dict1, dict2):
    ''' Merge dictionaries and keep values of common keys in list'''

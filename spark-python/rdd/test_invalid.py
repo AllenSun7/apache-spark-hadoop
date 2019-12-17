@@ -17,7 +17,7 @@ def word_count():
     parent_path = "in/maildir"
     invalid_folders = []
     names = PathList.get_immediate_subdirectories(parent_path)
-    stop_point = 40
+    stop_point = 0
     folder_count = stop_point
     while (stop_point < len(names)):
         folder_count += 1
@@ -31,7 +31,7 @@ def word_count():
         for sub_name in sub_names:
             mypath = sub_lines_path + "/" + sub_name
             onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-            if len(onlyfiles) < 5000:
+            if len(onlyfiles) < 3000:
                 pass
             else:
                 invalid_folders.append(mypath)

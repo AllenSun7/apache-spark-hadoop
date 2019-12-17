@@ -10,7 +10,7 @@ import json
 
 def word_count():
     '''count words of palindrome and anagram respectively'''
-    conf = SparkConf().setAppName("Apache spark").setMaster("local[5]") # 4 cores [*] all available cores
+    conf = SparkConf().setAppName("Apache spark").setMaster("local[*]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
     parent_path = "in/maildir"
     invalid_list = ["dasovich-j",
@@ -21,16 +21,21 @@ def word_count():
                     "dean-c",
                     "ward-k",
                     "guzman-m",
-                    'linder-e'] # folder has more than 5000 files
-    stop_point = 116
+                    "linder-e",
+                    "hodge-j",
+                    "baughman-d",
+                    "dorland-c",
+                    "lay-k",
+                    "hernandez-j"] # folder has more than 5000 files
+    stop_point = 150
     folder_count = stop_point
     if stop_point == 0:
         dic_palindrome = {}
         dic_anagram = {} 
     else:
-        with open('out/spark-palindrome/98_richey-c.json') as f:
+        with open('out/spark-palindrome/145_swerzbin-m.json') as f:
             dic_palindrome = json.load(f)
-        with open('out/spark-anagram/98_richey-c.json') as f:
+        with open('out/spark-anagram/145_swerzbin-m.json') as f:
             dic_anagram = json.load(f)
     names = PathList.get_immediate_subdirectories(parent_path) 
     while (stop_point < len(names)):
