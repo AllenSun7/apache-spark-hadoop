@@ -1,3 +1,7 @@
+"""
+read all files at the same time
+"""
+
 from pyspark import SparkContext, SparkConf
 import pysnooper
 import enchant
@@ -15,14 +19,12 @@ def word_count():
     '''count words of palindrome and anagram respectively'''
     conf = SparkConf().setAppName("Apache spark").setMaster("local[5]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
-    parent_path = "in/maildir/dasovich-j/*"
+    filename = "dasovich-j"
+    parent_path = "in/maildir/" + filename + "/*"
     dic_palindrome = {}
     dic_anagram = {}   
     dic_palindrome = {}
     dic_anagram = {}   
-    with open('out/test/data.json') as f:
-        data = json.load(f)
-        print(data)
 
     lines = sc.textFile(parent_path) 
     words = lines.flatMap(lambda line: line.split(" "))  
@@ -31,12 +33,9 @@ def word_count():
     dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
     dic_palindrome.update(dic_palindrome_copy)            
     dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
-    dic_anagram.update(dic_anagram_copy)
-    #dic_palindrome.update(data)            
-    
+    dic_anagram.update(dic_anagram_copy)           
 
     print("================================================================")    
-    print("=============================")  
     print("Palindrome") 
     print(dic_palindrome) 
     print("=============================")
@@ -46,21 +45,10 @@ def word_count():
     print("================================================================")
 
     #json file
-    with open('out/test/spark-palindrome.json', 'w') as outfile:
+    with open('out/test/spark-palindrome' + filename + '.json', 'w') as outfile:
         json.dump(dic_palindrome, outfile)
-    with open('out/test/spark-anagram.json', 'w') as outfile:
+    with open('out/test/spark-anagram' + filename + '.json', 'w') as outfile:
         json.dump(dic_anagram, outfile)
-    '''
-    # Write-Overwrites 
-    file_palindrome = open("out/test/spark-palindrome.txt","w")#write mode 
-    for key, value in dic_palindrome.items():
-        file_palindrome.write(key + " " + str(value) + "\n") 
-    file_palindrome.close() 
-    file_anagarm = open("out/test/spark-anagrams.txt","w")#write mode 
-    for key, value in dic_anagram.items():
-        file_anagarm.write(key + " " + str(value) + "\n") 
-    file_anagarm.close() 
-    '''
 
 def merge_dict(dict1, dict2):
    ''' Merge dictionaries and keep values of common keys in list'''

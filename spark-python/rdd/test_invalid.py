@@ -1,3 +1,9 @@
+"""
+get invalid folders
+local spark cannot rean a folder with > 5000 files 
+get a json file contains invalid folder
+"""
+
 import os
 import timeit
 import PathList

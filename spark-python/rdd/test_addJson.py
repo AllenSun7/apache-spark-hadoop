@@ -1,7 +1,3 @@
-"""
-count words and filter invalid folders
-"""
-
 from pyspark import SparkContext, SparkConf
 import pysnooper
 import enchant
@@ -14,58 +10,38 @@ import json
 
 def word_count():
     '''count words of palindrome and anagram respectively'''
-    conf = SparkConf().setAppName("Apache spark").setMaster("local[5]") # 4 cores [*] all available cores
-    sc = SparkContext(conf = conf)
-    parent_path = "in/maildir"
-    invalid_list = ["dasovich-j",
-                    "taylor-m",
-                    "shackleton-s",
-                    "mann-k",
-                    "jones-t",
-                    "dean-c"] # folder has more than 5000 files
-    stop_point = 91
-    folder_count = stop_point
-    if stop_point == 0:
-        dic_palindrome = {}
-        dic_anagram = {} 
-    else:
-        with open('out/spark-palindrome/91_sturm-f.json') as f:
-            dic_palindrome = json.load(f)
-        with open('out/spark-anagram/91_sturm-f.json') as f:
-            dic_anagram = json.load(f)
-    names = PathList.get_immediate_subdirectories(parent_path) 
-    while (stop_point < len(names)):
-        folder_count += 1
-        stop_point += 1
-        name = names[folder_count-1]
-        #if it the folder has more than 5000 files
-        if name not in invalid_list:
-            sub_lines_path = parent_path + "/" + name             
-            path_list = PathList.get_all_path(sub_lines_path)
-            #get words and update dictionay
-            for lines_path in path_list:
-                lines = sc.textFile(lines_path) 
-                words = lines.flatMap(lambda line: line.split(" "))  
-                wordCounts = words.countByValue()
-                dic_p, dic_a = words_filter(wordCounts)
-                dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
-                dic_palindrome.update(dic_palindrome_copy)            
-                dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
-                dic_anagram.update(dic_anagram_copy)
+    # change stop_file, filename, file_update
+    stop_file = 142 #current json stops point
+    filename = str(stop_file) + "_" + "richey-c.json" #current json file 
+    file_update = "dean-c.json"  #need to be added
+    filename_update =  str(stop_file + 1) + "_" + file_update
+    #main json files
+    with open('out/spark-palindrome/' + filename) as f:
+        dic_palindrome = json.load(f)
+    with open('out/spark-anagram/' + filename) as f:
+        dic_anagram = json.load(f)
+    
+    #json files about ot be updated
+    with open('out/' + file_update) as f:
+        dic_p = json.load(f)
+    with open('out/' + file_update) as f:
+        dic_a = json.load(f)
 
-            #store words into json file
-            file_palindrome_path = "out/spark-palindrome/" + str(folder_count) + "_" + name + ".json"
-            with open(file_palindrome_path, 'w') as outfile:
-                json.dump(dic_palindrome, outfile)
-            file_anagram_path = "out/spark-anagram/" + str(folder_count) + "_" + name + ".json"
-            with open(file_anagram_path, 'w') as outfile:
-                json.dump(dic_anagram, outfile)
+    dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
+    dic_palindrome.update(dic_palindrome_copy)            
+    dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
+    dic_anagram.update(dic_anagram_copy)
+
+    #store words into json file
+    file_palindrome_path = "out/spark-palindrome/" + filename_update
+    with open(file_palindrome_path, 'w') as outfile:
+        json.dump(dic_palindrome, outfile)
+    file_anagram_path = "out/spark-anagram/" + filename_update
+    with open(file_anagram_path, 'w') as outfile:
+        json.dump(dic_anagram, outfile)
 
 
-    print("================================================================")    
-    print(path_list)
-    print("number of path_list: ", len(path_list))
-    print("=============================")  
+    print("================================================================")     
     print("Palindrome") 
     print(dic_palindrome) 
     print("=============================")
