@@ -18,7 +18,7 @@ def word_count():
                     "shackleton-s",
                     "mann-k",
                     "jones-t"] # folder has more than 5000 files
-    stop_point = 0
+    stop_point = 39
     folder_count = stop_point
     if stop_point == 0:
         dic_palindrome = {}
@@ -28,8 +28,6 @@ def word_count():
             dic_palindrome = json.load(f)
         with open('out/spark-anagram/39_ybarbo-p.json') as f:
             dic_anagram = json.load(f)
-    dic_palindrome = {}
-    dic_anagram = {}   
     names = PathList.get_immediate_subdirectories(parent_path)
     dic_palindrome = {}
     dic_anagram = {}   
