@@ -1,0 +1,7 @@
+in/maildir/dasovich-j/notes_inbox
+in/maildir/dasovich-j/all_documents
+in/maildir/taylor-m/all_documents
+in/maildir/shackleton-s/all_documents
+in/maildir/mann-k/all_documents
+in/maildir/jones-t/notes_inbox
+in/maildir/jones-t/all_documents

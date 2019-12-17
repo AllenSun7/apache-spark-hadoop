@@ -4,80 +4,71 @@ import enchant
 import os
 from collections import defaultdict
 import timeit
-import path_list_all
+import PathList
+import pysnooper
+import json
+from os import listdir
+from os.path import isfile, join
 
+@pysnooper.snoop()
 def word_count():
     '''count words of palindrome and anagram respectively'''
     conf = SparkConf().setAppName("Apache spark").setMaster("local[5]") # 4 cores [*] all available cores
     sc = SparkContext(conf = conf)
-    parent_path = "in/maildir/allen-p"
-    dic_palindrome = {}
-    dic_anagram = {}   
-    path_list = get_all_path(parent_path)
-    for lines_path in path_list:
-        lines = sc.textFile(lines_path) 
-        words = lines.flatMap(lambda line: line.split(" "))  
-        wordCounts = words.countByValue()
-        dic_p, dic_a = words_filter(wordCounts)
-        dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
-        dic_palindrome.update(dic_palindrome_copy)            
-        dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
-        dic_anagram.update(dic_anagram_copy)
+    parent_path = "in/maildir/dasovich-j"
 
+    
+    
+    """    
+    with open('out/spark-palindrome/40_watson-k.json') as f:
+        dic_palindrome = json.load(f)
+    with open('out/spark-palindrome/40_watson-k.json') as f:
+        dic_anagram = json.load(f)
+    """
+    names = PathList.get_immediate_subdirectories(parent_path)
+    print(names)
+    dic_palindrome = {}
+    dic_anagram = {} 
+    folder_count = 0    
+    invalid_folders = []
+    for name in names:
+        mypath = parent_path + "/" + name
+        onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+        if len(onlyfiles) < 5000:
+            folder_count += 1
+            sub_lines_path = parent_path + "/" + name + "/*"             
+            lines = sc.textFile(sub_lines_path) 
+            words = lines.flatMap(lambda line: line.split(" "))  
+            wordCounts = words.countByValue()
+            dic_p, dic_a = words_filter(wordCounts)
+            dic_palindrome_copy = merge_dict(dic_p, dic_palindrome) 
+            dic_palindrome.update(dic_palindrome_copy)            
+            dic_anagram_copy = merge_dict(dic_a, dic_anagram) 
+            dic_anagram.update(dic_anagram_copy)
+            #json file
+            file_palindrome_path = "out/test/spark-palindrome/" + str(folder_count) + "_" + name + ".json"
+            with open(file_palindrome_path, 'w') as outfile:
+                json.dump(dic_palindrome, outfile)
+            file_anagram_path = "out/test/spark-anagram/" + str(folder_count) + "_" + name + ".json"
+            with open(file_anagram_path, 'w') as outfile:
+                json.dump(dic_anagram, outfile)
+        else:
+            invalid_folders.append(mypath)
+    file_invaid = open("out/test/invalid_folder.txt","w")#write mode 
+    for invalid_folder in invalid_folders:
+        file_invaid.write(invalid_folder + "\n") 
+    file_invaid.close() 
     print("================================================================")    
-    print(path_list)
-    print("number of path_list: ", len(path_list))
-    print("=============================")  
     print("Palindrome") 
     print(dic_palindrome) 
     print("=============================")
     print("Anagram") 
     group_dic_anagram = group_anagram(dic_anagram)
     print(group_dic_anagram)
+    print("=============================")  
+    print(invalid_folders)
     print("================================================================")
-
-
-def get_all_path(parent_path):
-    '''return all direstoray paths'''
-    names = get_immediate_subdirectories(parent_path)
-    path_list = []
-    for sub_name in names:
-        sub_sub_path, sub_sub_names = get_sub_directory(parent_path, sub_name)
-        if sub_sub_names:
-            for sub_sub_name in sub_sub_names:
-                sub_sub_sub_path, sub_sub_sub_names = get_sub_directory(sub_sub_path, sub_sub_name)
-                if sub_sub_sub_names:
-                    for sub_sub_sub_name in sub_sub_sub_names:
-                        sub_sub_sub_sub_path, sub_sub_sub_sub_names = get_sub_directory(sub_sub_sub_path, sub_sub_sub_name)
-                        if sub_sub_sub_sub_names:
-                            for sub_sub_sub_sub_name in sub_sub_sub_sub_names:
-                                sub_sub_sub_sub_sub_path, sub_sub_sub_sub_sub_names = get_sub_directory(sub_sub_sub_sub_path, sub_sub_sub_sub_name)
-                                if sub_sub_sub_sub_sub_names:
-                                    for sub_sub_sub_sub_sub_name in sub_sub_sub_sub_sub_names:
-                                        sub_sub_sub_sub_sub_sub_path, sub_sub_sub_sub_sub_sub_names = get_sub_directory(sub_sub_sub_sub_path, sub_sub_sub_sub_name)                                        
-                                        if sub_sub_sub_sub_sub_sub_names:
-                                            for sub_sub_sub_sub_sub_sub_name in sub_sub_sub_sub_sub_sub_names:
-                                                path_list.append(sub_sub_sub_sub_sub_sub_path  + "/" + sub_sub_sub_sub_sub_sub_name + "/*")
-                                    
-                                        else:
-                                            path_list.append(sub_sub_sub_sub_sub_path  + "/" + sub_sub_sub_sub_sub_name + "/*")
-
-                                else:    
-                                    path_list.append(sub_sub_sub_sub_path  + "/" + sub_sub_sub_sub_name + "/*")
-                                
-                        else:
-                            path_list.append(sub_sub_sub_path + "/" + sub_sub_sub_name + "/*")
-                
-                else:
-                    path_list.append(sub_sub_path + "/" + sub_sub_name + "/*")
-
-        else:
-            path_list.append(parent_path + "/" + sub_name + "/*")
-    return path_list
-
-def get_sub_directory(path, names):
-    sublines_path = path + "/" + names
-    return (sublines_path, get_immediate_subdirectories(sublines_path))      
+    
 
 def merge_dict(dict1, dict2):
    ''' Merge dictionaries and keep values of common keys in list'''
@@ -136,12 +127,7 @@ def group_anagram(dic_anagram):
         for key in ele:
             temp[str(sorted(key))].append(ele) 
     res = list(temp.values())   
-    return str(res)
-
-def get_immediate_subdirectories(a_dir):
-    '''get subdiretory of dataset'''
-    return [name for name in os.listdir(a_dir)
-            if os.path.isdir(os.path.join(a_dir, name))]
+    return res
 
 def main():
     '''cauculate runtime'''
