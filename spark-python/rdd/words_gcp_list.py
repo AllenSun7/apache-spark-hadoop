@@ -31,7 +31,7 @@ def word_count():
     print("================================================================")    
     print("Palindrome") 
     print(dic_palindrome) 
-    print("=============================")
+    print("================================================================")
     print("Anagram") 
     group_dic_anagram = group_anagram(dic_anagram)
     print(group_dic_anagram)
@@ -53,7 +53,7 @@ def word_count():
             json.dump(dic_anagram, outfile)
     except:
         pass 
-    
+
 def lenth_words(word):
     return (len(word) in range(2, 20))
 
@@ -117,6 +117,7 @@ def main():
     stop = timeit.default_timer()
     time = stop - start
     print('Runtime: ', time)  
+    print("================================================================")
 
 if __name__ == "__main__":
     main()
