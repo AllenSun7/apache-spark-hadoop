@@ -1,1 +1,0 @@
-{"did": 146, "PEP": 10, "level": 49, "mom": 3, "noon": 21, "sees": 7, "stats": 3, "SEXES": 1, "dad": 14, "ENE": 13, "eye": 6, "non": 7, "pop": 2, "NON": 1, "ere": 1, "refer": 7, "eve": 1, "ADA": 3, "deed": 9, "tat": 3, "PDP": 2}
