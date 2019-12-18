@@ -53,6 +53,19 @@ def word_count():
             json.dump(dic_anagram, outfile)
     except:
         pass 
+    
+    try:
+        #store words into json file
+        f_palindrome = open("test-data-palindrome.txt", 'w+')
+        for item in dic_palindrome.items():
+            f_palindrome.write(str(item) + '\n')            
+        f_palindrome.close()
+        f_angram = open("test-data-anagram.txt", 'w+')
+        for line in group_dic_anagram:
+            f_angram.write(str(line) + '\n')
+        f_angram.close()
+    except:
+        pass
 
 def lenth_words(word):
     return (len(word) in range(2, 20))
