@@ -38,9 +38,9 @@ def word_count():
     print("================================================================")
 
     #json file
-    with open('out/invalid/spark-palindrome/' + filename + '.json', 'w') as outfile:
+    with open('gs://apache-dataset-all/test-data-palindrom.json', 'w') as outfile:
         json.dump(dic_palindrome, outfile)
-    with open('out/invalid/spark-anagram/' + filename + '.json', 'w') as outfile:
+    with open('gs://apache-dataset-all/test-data-anagram.json', 'w') as outfile:
         json.dump(dic_anagram, outfile)
 
 def lenth_words(word):
