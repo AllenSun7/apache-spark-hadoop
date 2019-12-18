@@ -48,32 +48,37 @@ def lenth_words(word):
 
 def words_filter(wordCounts):
     '''filter words'''
+    contents_palindrome = list_palindrome()
     contents_anagram = list_anagram()
     dic_anagram = {}
     dic_palindrome = {}
     for word, count in wordCounts.items():
-        if len(word) > 2: #a work must contain more than 2 letters
-            #letters only: ascii A-Z (65-90), a-z (97-122)
-            ascii_word = ord(word[0])
-            if ascii_word in range(65, 91) or ascii_word in range(97, 123):
-                word_dic = {word: count}
-                #check if it is a palindrome
-                if get_palindrome(word):
-                    dic_palindrome.update(word_dic)
-                #check if it is a anagram
-                if get_anagram(word, contents_anagram):  
-                    dic_anagram.update(word_dic)
+        word_dic = {word: count}
+        #check if it is a palindrome
+        if get_palindrome(word, contents_palindrome):
+            dic_palindrome.update(word_dic)
+        #check if it is a anagram
+        if get_anagram(word, contents_anagram):  
+            dic_anagram.update(word_dic)
                         
     return (dic_palindrome, dic_anagram)
 
-def get_palindrome(word):
+def get_palindrome(word, contents_palindrome):
     '''palindrome'''
-    #not same characters: "AAA","BBB"...
-    return (word == word[::-1] and not all(c == word[0] for c in word[1:]))
+    return (word in contents_palindrome)
 
 def get_anagram(word, contents_anagram):
     '''anagram'''
     return (word in contents_anagram)
+
+def list_palindrome():
+    '''read the input file of all palindromes and store into array'''
+    #get absolute path
+    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+    my_file = os.path.join(THIS_FOLDER, 'palindrome.txt')
+    with open(my_file, "r") as ins:
+        array = [line.strip() for line in ins]
+    return array
 
 def list_anagram():
     '''read the input file of all anagrams and store into array'''
