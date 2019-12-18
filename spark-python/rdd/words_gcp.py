@@ -37,11 +37,22 @@ def word_count():
     print(group_dic_anagram)
     print("================================================================")
 
+    try:
     #json file
-    with open('gs://apache-dataset-all/test-data-palindrome.json', 'w') as outfile:
-        json.dump(dic_palindrome, outfile)
-    with open('gs://apache-dataset-all/test-data-anagram.json', 'w') as outfile:
-        json.dump(dic_anagram, outfile)
+        with open('gs://apache-dataset-all/test-data-palindrome.json', 'w') as outfile:
+            json.dump(dic_palindrome, outfile)
+        with open('gs://apache-dataset-all/test-data-anagram.json', 'w') as outfile:
+            json.dump(dic_anagram, outfile)
+    except:    
+        pass
+    try:
+        #json file to bucket
+        with open('test-data-palindrome.json', 'w') as outfile:
+            json.dump(dic_palindrome, outfile)
+        with open('test-data-anagram.json', 'w') as outfile:
+            json.dump(dic_anagram, outfile)
+    except:
+        pass 
 
 def lenth_words(word):
     return (len(word) in range(2, 20))
