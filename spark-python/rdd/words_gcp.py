@@ -5,11 +5,9 @@ read all files at the same time
 
 from pyspark import SparkContext, SparkConf
 import pysnooper
-from nltk.corpus import enwords
 import os
 from collections import defaultdict
 import timeit
-import PathList
 import pysnooper
 import json
 from glob import glob
@@ -72,17 +70,16 @@ def words_filter(wordCounts):
     dic_palindrome = {}
     for word, count in wordCounts.items():
         if len(word) > 2: #a work must contain more than 2 letters
-            if word in enwords.words(): #if it is a english word
-                #letters only: ascii A-Z (65-90), a-z (97-122)
-                ascii_word = ord(word[0])
-                if ascii_word in range(65, 91) or ascii_word in range(97, 123):
-                    word_dic = {word: count}
-                    #check if it is a palindrome
-                    if get_palindrome(word):
-                        dic_palindrome.update(word_dic)
-                    #check if it is a anagram
-                    if get_anagram(word, contents_anagram):  
-                        dic_anagram.update(word_dic)
+            #letters only: ascii A-Z (65-90), a-z (97-122)
+            ascii_word = ord(word[0])
+            if ascii_word in range(65, 91) or ascii_word in range(97, 123):
+                word_dic = {word: count}
+                #check if it is a palindrome
+                if get_palindrome(word):
+                    dic_palindrome.update(word_dic)
+                #check if it is a anagram
+                if get_anagram(word, contents_anagram):  
+                    dic_anagram.update(word_dic)
                         
     return (dic_palindrome, dic_anagram)
 
