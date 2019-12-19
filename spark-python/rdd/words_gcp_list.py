@@ -30,11 +30,18 @@ def word_count():
 
     print("================================================================")    
     print("Palindrome") 
-    print(dic_palindrome) 
+    for key, value in dic_palindrome.items():
+        line_str = key + ": " + str(value) + '\n'
+        print(line_str) 
     print("================================================================")
     print("Anagram") 
-    group_dic_anagram = group_anagram(dic_anagram)
-    print(group_dic_anagram)
+    for line in group_dic_anagram:
+            line_add = ""
+            for item in line:
+                for key, value in item.items():
+                    add_str = "(" + key + ": " + str(value) + ")" + "  "
+                    line_add += add_str
+    print(line_add)
     print("================================================================")
 
     try:
