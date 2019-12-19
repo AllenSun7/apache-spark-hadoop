@@ -30,12 +30,14 @@ def word_count():
 
     print("================================================================")    
     print("Palindrome") 
+    print("Number of Palindrome: ", len(dic_palindrome))
     for key, value in dic_palindrome.items():
         line_str = key + ": " + str(value) + '\n'
         print(line_str) 
     print("================================================================")
-    print("Anagram") 
+    print("Anagram")
     group_dic_anagram = group_anagram(dic_anagram)
+    print("Number of sets of Anagram: ", len(group_dic_anagram))
     for line in group_dic_anagram:
         line_add = ""
         for item in line:
@@ -66,6 +68,7 @@ def word_count():
     try:
         #store words into txt file
         f_palindrome = open("re/test-data-palindrome.txt", 'w+')
+        f_palindrome.write("Number of Palindrome: " + str(len(dic_palindrome))+ "\n")
         for key, value in dic_palindrome.items():
             line_str = key + ": " + str(value) + '\n'
             f_palindrome.write(line_str)            
@@ -75,6 +78,7 @@ def word_count():
 
     try:        
         f_angram = open("re/test-data-anagram.txt", 'w+')
+        f_angram.write("Number of sets of Anagram: " + str(len(group_dic_anagram)) + "\n")
         for line in group_dic_anagram:
             line_add = ""
             for item in line:

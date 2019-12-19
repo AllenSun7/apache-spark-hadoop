@@ -19,12 +19,14 @@ def word_count():
         dic_anagram = json.load(f)   
     group_dic_anagram = group_anagram(dic_anagram)
 
-    #store words into json file
+    #store words into txt file
     f_palindrome = open("out/invalid/final-palindrome.txt", 'w+')
+    f_palindrome.write("Number of Palindrome: " + str(len(dic_palindrome))+ "\n")
     for item in dic_palindrome.items():
         f_palindrome.write(str(item) + '\n')            
     f_palindrome.close()
     f_angram = open("out/invalid/final-anagram.txt", 'w+')
+    f_angram.write("Number of sets of Anagram: " + str(len(group_dic_anagram)) + "\n")
     for line in group_dic_anagram:
         f_angram.write(str(line) + '\n')
     f_angram.close()

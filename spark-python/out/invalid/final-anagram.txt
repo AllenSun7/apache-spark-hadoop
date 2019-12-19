@@ -1,3 +1,4 @@
+Number of sets of Anagram: 243
 [{'are': 529807}, {'ear': 409}, {'era': 523}]
 [{'master': 5727}, {'stream': 1369}]
 [{'serve': 8670}, {'sever': 119}, {'verse': 44}, {'veers': 12}]

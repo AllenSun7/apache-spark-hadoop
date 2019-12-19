@@ -1,3 +1,4 @@
+Number of Palindrome: 122
 ('did', 46051)
 ('level', 14190)
 ('noon', 4092)

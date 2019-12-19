@@ -37,10 +37,13 @@ def word_count():
 
     print("================================================================")     
     print("Palindrome") 
+    print("Number of Palindrome: ", len(dic_palindrome))
     print(dic_palindrome) 
     print("=============================")
     print("Anagram") 
     group_dic_anagram = group_anagram(dic_anagram)
+    print("Number of sets of Anagram: ", len(group_dic_anagram))
+    print(dic_anagram) 
     print(group_dic_anagram)
     print("================================================================")
     

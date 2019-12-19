@@ -1,0 +1,12 @@
+Hadoop 3.2.1
+Source code repository https://gitbox.apache.org/repos/asf/hadoop.git -r b3cbbb467e22ea829b3808f4b7b01d07e0bf3842
+Compiled by rohithsharmaks on 2019-09-10T15:56Z
+Compiled with protoc 2.5.0
+From source with checksum 776eaf9eee9c0ffc370bcbc1888737
+This command was run using /usr/local/Cellar/hadoop/3.2.1/libexec/share/hadoop/common/hadoop-common-3.2.1.jar
+
+2. See example MapReduce programs. Hadoop comes with several example MapReduce applications. You can see a list of them by running hadoop jar /usr/jars/hadoop-examples.jar. We are interested in running WordCount.
+/usr/local/Cellar/hadoop/3.2.1/libexec/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar
+
+for gcp
+/home/sl86866848/hadoop-mapreduce-examples-3.2.0.jar

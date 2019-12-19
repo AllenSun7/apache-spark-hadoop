@@ -1,0 +1,40 @@
+Delete all files in gs://apache-dataset-all/out
+1.Hadoop palindrome
+    1). cd apache/jars-files
+    2). PalindromeCheck:
+hadoop jar palindrome.jar PalindromeCheck gs://apache-dataset-all/test-data/hadoop/* gs://apache-dataset-all/out/hadoop-palindrome
+    3). list results    
+gsutil ls gs://apache-dataset-all/out/hadoop-palindrome
+    4). copy 
+gsutil cp gs://apache-dataset-all/out/hadoop-palindrome/part-r-00005 . 
+    5). view file
+cat part-r-00005
+#useful data (5) (1) 
+
+2.Hadoop anagram
+    1). AnagramCheck:
+hadoop jar anagram.jar AnagramCheck gs://apache-dataset-all/test-data/hadoop/* gs://apache-dataset-all/out/hadoop-anagram
+    2). list results    
+gsutil ls gs://apache-dataset-all/out/hadoop-anagram
+    3). copy and show
+gsutil cp gs://apache-dataset-all/out/hadoop-anagram/part-00005 .
+    4). view file
+cat part-00005
+
+3. Sparkt
+clean up spark-python/re
+    rm -R re
+    mkdir re 
+
+    1). cd 
+    2). cd apache-spark-hadoop/spark-python
+    3). run commannd
+spark-submit rdd/words_gcp_list.py
+    4). present txt files or show data in out/spark
+    5). list results    
+gsutil ls gs://apache-dataset-all/out/spark
+    6). copy
+gsutil cp -r gs://apache-dataset-all/out/spark . 
+    7). view
+cd spark
+cat 

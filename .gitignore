@@ -1,5 +1,6 @@
 #dataset folder
 maildir/
+less-data/
 
 #DS Store
 .DS_Store
