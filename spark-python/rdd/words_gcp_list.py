@@ -37,12 +37,12 @@ def word_count():
     print("Anagram") 
     group_dic_anagram = group_anagram(dic_anagram)
     for line in group_dic_anagram:
-            line_add = ""
-            for item in line:
-                for key, value in item.items():
-                    add_str = "(" + key + ": " + str(value) + ")" + "  "
-                    line_add += add_str
-    print(line_add)
+        line_add = ""
+        for item in line:
+            for key, value in item.items():
+                add_str = "(" + key + ": " + str(value) + ")" + "  "
+                line_add += add_str
+        print(line_add)
     print("================================================================")
 
     try:
