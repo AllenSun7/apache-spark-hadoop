@@ -57,12 +57,17 @@ def word_count():
     try:
         #store words into json file
         f_palindrome = open("out/test-data-palindrome.txt", 'w+')
-        for item in dic_palindrome.items():
-            f_palindrome.write(str(item) + '\n')            
+        for key, value in dic_palindrome.items():
+            f_palindrome.write(key + ": " + value + '\n')            
         f_palindrome.close()
         f_angram = open("out/test-data-anagram.txt", 'w+')
         for line in group_dic_anagram:
-            f_angram.write(str(line) + '\n')
+            line_add = ""
+            for item in line:
+                for key, value in item.items():
+                    add_str = "(" + key + ": " + value + ")" + "  "
+                    line_add += add_str       
+            f_angram.write(line_add + '\n')
         f_angram.close()
     except:
         pass
