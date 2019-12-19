@@ -47,20 +47,23 @@ def word_count():
         pass
     try:
         #json file to bucket
-        with open('out/test-data-palindrome.json', 'w') as outfile:
+        with open('re/test-data-palindrome.json', 'w') as outfile:
             json.dump(dic_palindrome, outfile)
-        with open('out/test-data-anagram.json', 'w') as outfile:
+        with open('re/test-data-anagram.json', 'w') as outfile:
             json.dump(dic_anagram, outfile)
     except:
         pass 
     
     try:
         #store words into json file
-        f_palindrome = open("out/test-data-palindrome.txt", 'w+')
+        f_palindrome = open("re/test-data-palindrome.txt", 'w+')
         for key, value in dic_palindrome.items():
             f_palindrome.write(key + ": " + value + '\n')            
         f_palindrome.close()
-        f_angram = open("out/test-data-anagram.txt", 'w+')
+    except:
+        pass
+    try:        
+        f_angram = open("re/test-data-anagram.txt", 'w+')
         for line in group_dic_anagram:
             line_add = ""
             for item in line:
