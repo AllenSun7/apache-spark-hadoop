@@ -12,27 +12,26 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 
-public class PalindromeCheck {
+public class Palindrome {
 
     public static boolean isPalindrome(String str){
         return str.equals(new StringBuilder(str).reverse().toString());
     }
 
 
-    public static class TokenizerMapper
+    public static class Mapper
             extends Mapper<Object, Text, Text, IntWritable> {
 
-        private final static IntWritable one = new IntWritable(1);
+        private final static IntWritable count = new IntWritable(1);
         private Text word = new Text();
 
         public void map(Object key, Text value, Context context
         ) throws IOException, InterruptedException {
             StringTokenizer itr = new StringTokenizer(value.toString().toLowerCase());
             while (itr.hasMoreTokens()) {
-                word.set(itr.nextToken().replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", ""));
                 if(word.getLength()>0)
-                    if(PalindromeCheck.isPalindrome(word.toString()))
-                        context.write(word, one);
+                    if(Palindrome.isPalindrome(word.toString()))
+                        context.write(word, count);
             }
         }
     }
@@ -56,8 +55,8 @@ public class PalindromeCheck {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "Palindrome Check");
-        job.setJarByClass(PalindromeCheck.class);
-        job.setMapperClass(TokenizerMapper.class);
+        job.setJarByClass(Palindrome.class);
+        job.setMapperClass(Mapper.class);
         job.setCombinerClass(IntSumReducer.class);
         job.setReducerClass(IntSumReducer.class);
         job.setOutputKeyClass(Text.class);
