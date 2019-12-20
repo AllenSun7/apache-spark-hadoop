@@ -13,8 +13,9 @@ import java.util.StringTokenizer;
 
 
 public class Palindrome {
+/** Palindrome for words**/
 
-    public static boolean isPalindrome(String str){
+    public static boolean checkPalindrome(String str){
         return str.equals(new StringBuilder(str).reverse().toString());
     }
 
@@ -36,7 +37,7 @@ public class Palindrome {
         }
     }
 
-    public static class IntSumReducer
+    public static class MapperReducer
             extends Reducer<Text,IntWritable,Text,IntWritable> {
         private IntWritable result = new IntWritable();
 
